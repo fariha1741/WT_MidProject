@@ -1,0 +1,88 @@
+<html>
+
+<head>
+	<title>LOGIN</title>
+
+</head>
+<script>
+	function f1() {
+		var id = document.getElementById("uid").value;
+		var pass = document.getElementById("pass").value;
+
+		if (id == "" || pass == "") { document.getElementById("logindiv").innerHTML = "Null Submission"; }
+		else {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "login.php", true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhttp.send('uid=' + id + '&pass=' + pass);
+
+			xhttp.onreadystatechange = function (hh) {
+
+				if (hh == 'true') { header("Location:StudentHome.php"); }
+				else {
+					document.getElementById('logindiv').innerHTML = "Invalid ID and password"
+
+				}
+
+			};
+
+		}
+	}
+</script>
+<style>
+	fieldset {
+		border: 1px solid rgb(77, 0, 77);
+		width: 400px;
+		float: center;
+	}
+</style>
+
+<body>
+
+	<table border="0" align="center">
+		<tr>
+			<td>
+				<img src="login.jpg" align="center" width="270px " height="250px">
+			</td>
+			<td> </td>
+		</tr>
+	</table>
+
+	<form method="POST" action="login.php">
+		<table border="0" align="center">
+			<tr>
+				<td>
+					<fieldset align="center" style="width:50">
+						<legend>LOGIN</legend>
+						<table align="center" border="0" bgcolor="#660066">
+							<tr>
+								<td>ID: </td>
+								<td><input type="text" name="uid" id="uid" placeholder="Enter your id.." /></td>
+							</tr>
+							<tr>
+								<td>PASSWORD:</td>
+								<td><input type="password" name="pass" id="pass" placeholder="Enter your password.. " />
+									<div id="logindiv"> </div>
+								</td>
+								<td></td>
+							</tr>
+							<tr></tr>
+							<tr></tr>
+							
+							<tr>
+								<td>
+									<hr>
+									<input type="submit" name="submit" value="Login">
+									<a href="register.html" style="color:white;"> Register</a></td>
+								<td><a href="changepass.html" style="color:white;">forgot password?</a></td>
+							</tr>
+
+						</table>
+					</fieldset>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+
+</html>
